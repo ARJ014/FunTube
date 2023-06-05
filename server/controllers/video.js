@@ -124,7 +124,7 @@ export const search = async (req, res, next) => {
       $or: [
         { title: { $regex: query, $options: "i" } },
         { desc: { $regex: query, $options: "i" } },
-        { tags: { $in: query } },
+        { tags: { $in: query.split(" ") } },
       ],
     }).sort({ views: -1 });
     res.status(200).json(videos);
